@@ -10,8 +10,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        boolean isComplete = false;
-
         ICompetitor[] competitors = new ICompetitor[] {
                 new Cat("Oliver"),
                 new Human("Jhon Doe"),
@@ -32,12 +30,7 @@ public class Main {
              competitors) {
             for (Obstacle obstacle:
                  obstacleCourse) {
-                if (obstacle instanceof Wall) {
-                    isComplete = competitor.jumpOver((Wall)obstacle);
-                } else if (obstacle instanceof Track) {
-                    isComplete = competitor.runThrough((Track)obstacle);
-                }
-                if (!isComplete) break;
+                if (!competitor.doAction(obstacle)) break;
             }
             System.out.println();
         }

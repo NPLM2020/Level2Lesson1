@@ -1,7 +1,6 @@
 package Competitors;
 
-import Obstacles.Track;
-import Obstacles.Wall;
+import Obstacles.Obstacle;
 
 public interface ICompetitor {
 
@@ -9,7 +8,6 @@ public interface ICompetitor {
 
     void jump();
 
-    boolean runThrough(Track track);
+    boolean doAction(Obstacle obstacle);
 
-    boolean jumpOver(Wall wall);
 }

@@ -1,5 +1,6 @@
 package Competitors;
 
+import Obstacles.Obstacle;
 import Obstacles.Track;
 import Obstacles.Wall;
 
@@ -36,7 +37,16 @@ public class Human implements ICompetitor {
     }
 
     @Override
-    public boolean runThrough(Track track) {
+    public boolean doAction(Obstacle obstacle) {
+        if (obstacle instanceof Wall) {
+            return jumpOver((Wall) obstacle);
+        } else if (obstacle instanceof Track) {
+            return runThrough((Track) obstacle);
+        }
+        return false;
+    }
+
+    private boolean runThrough(Track track) {
         if (track.getDistance() <= maxDistance) {
             System.out.printf("%s the human ran a %s meters long track.\n", name, track.getDistance());
             return true;
@@ -45,8 +55,7 @@ public class Human implements ICompetitor {
         return false;
     }
 
-    @Override
-    public boolean jumpOver(Wall wall) {
+    private boolean jumpOver(Wall wall) {
         if (wall.getHeight() <= maxHeight) {
             System.out.printf("%s the human jumped over a %s meters height wall.\n", name, wall.getHeight());
             return true;
